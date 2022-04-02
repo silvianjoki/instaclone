@@ -21,7 +21,7 @@ class FollowForm(forms.ModelForm):
 class UnfollowForm(forms.ModelForm):
     class Meta:
         model = Follow
-        exclude = ['followed', 'follower']
+        exclude = ('followed', 'follower',)
 
 class UploadImageForm(forms.ModelForm):
     class Meta :
