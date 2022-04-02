@@ -2,14 +2,15 @@ import profile
 from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+
 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to = 'images/', null=True)
     bio = models.TextField(blank=True)
-    followers = models.IntegerField(default=0)
-    following = models.IntegerField(default=0)
+
     
     def __str__(self):
         return self.username
@@ -67,9 +68,3 @@ class Comments(models.Model):
         return cls.objects.filter(image=image)
     
 
-class Follow(models.Model):
-    following = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_followed')
-    followers = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_following')
-    
-    def __str__(self):
-        return self.pk

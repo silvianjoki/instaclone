@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Profile, Image, Comments, Follow
+from .models import Profile, Image, Comments
 
 class ProfileForm(forms.ModelForm):
     model = Profile
@@ -13,15 +13,10 @@ class EditBioForm(forms.ModelForm):
         model = Profile
         exclude = ('user',)
 
-class FollowForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
-        model = Follow
-        exclude = ('followed', 'follower',)
-
-class UnfollowForm(forms.ModelForm):
-    class Meta:
-        model = Follow
-        exclude = ('followed', 'follower',)
+        model = Comments
+        exclude = ('image', )
 
 class UploadImageForm(forms.ModelForm):
     class Meta :

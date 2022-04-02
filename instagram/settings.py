@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'clone.apps.CloneConfig',
     'bootstrap5',
+    'tinymce',
     
     'django.contrib.admin',
     'django.contrib.auth',
