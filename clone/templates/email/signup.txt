@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the InstaClone. You can share your pictures with the world here.
