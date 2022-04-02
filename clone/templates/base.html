@@ -1,3 +1,5 @@
+{% load bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +18,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    
+    {% include "navbar.html" %}
+    {% block content%}
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
 </body>
 </html>
