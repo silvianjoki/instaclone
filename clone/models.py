@@ -13,6 +13,10 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.username
+    def profile_save(self):
+        self.save()
+        
+        
     @classmethod
     def search_username(cls,username):
         return User.objects.filter(username=username)
