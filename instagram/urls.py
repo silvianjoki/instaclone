@@ -20,6 +20,7 @@ from django.contrib.auth import views
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('^tinymce/', include('tinymce.urls')),

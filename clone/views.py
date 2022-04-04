@@ -86,13 +86,7 @@ def comments(request,image_id):
         form = CommentForm()
     return render(request, 'comment.html',{'current_user':current_user, 'image':image, 'user':user, 'comments': comments})
 
-# def like(request, image_id):
-#     current_user = request.user
-#     image=Image.objects.get(id=image_id)
-#     new_like,created= likes.objects.get_or_create(User=current_user, image=image)
-#     new_like.save()
 
-#     return redirect('index', {'created':created})
 
 def like_image(request,image_id):
     image = Image.objects.get(pk=image_id)

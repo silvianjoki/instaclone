@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'tinymce',
     'crispy_forms',
+    'django_bootstrap_icons',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,3 +150,6 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
+LOGIN_REDIRECT_URL='/home'

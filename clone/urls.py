@@ -10,6 +10,10 @@ from django_registration.backends.one_step.views import RegistrationView
 urlpatterns=[
     re_path('^$', views.index, name = 'index'),
     path('profile/', views.profile, name='profile'),
+    path('home/', views.home, name='home'),
+    path('results/', views.search, name='results'),
+    
+    
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/',
