@@ -10,9 +10,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to = 'images/', null=True)
     bio = models.TextField(blank=True)
-    name = models.CharField(max_length=44, null=True)
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
+    name = models.CharField(max_length=30, blank=True, null=True)
     
     def delete_profile(self):
         self.delete()

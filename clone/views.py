@@ -1,10 +1,10 @@
 
-from distutils.command.upload import upload
+
 from django.contrib.auth.models import User
-from turtle import title
 from django.shortcuts import redirect, render
 from django.http  import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .forms import ProfileForm,UploadImageForm, CommentForm
 from .models import Image, Profile, Comments
 
@@ -26,6 +26,7 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def upload_image(request):
+    title = "Instagram | Upload image"
     current_user = request.user
     if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
@@ -33,7 +34,7 @@ def upload_image(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('index')
+        return redirect('index', {'title':title})
     else:
         form = UploadImageForm()
     return render(request, 'upload_image.html', {'form': form })
@@ -78,15 +79,31 @@ def comments(request,image_id):
             comments.image = image
             comments.comments_user = current_user
             comments.save()
-
-            print(comments)
-
-
         return redirect(index)
-
     else:
         form = CommentForm()
-
     return render(request, 'comment.html',{'current_user':current_user, 'image':image, 'user':user, 'comments': comments})
 
-    
+# def like(request, image_id):
+#     current_user = request.user
+#     image=Image.objects.get(id=image_id)
+#     new_like,created= likes.objects.get_or_create(User=current_user, image=image)
+#     new_like.save()
+
+#     return redirect('index', {'created':created})
+
+def like_image(request,image_id):
+    image = Image.objects.get(pk=image_id)
+    liked = False
+    current_user = request.user
+    try:
+        profile = Profile.objects.get(user = current_user)
+    except Profile.DoesNotExist:
+        raise Http404()
+    if image.likes.filter(id=profile.id).exists():
+        image.likes.remove(profile)
+        liked = False
+    else:
+        image.likes.add(profile)
+        liked = True
+    return HttpResponseRedirect(reverse('index', {'liked':liked}))
