@@ -36,7 +36,7 @@ def upload_image(request):
         return redirect('index')
     else:
         form = UploadImageForm()
-    return render(request, 'upload_image.html', {'form': form, })
+    return render(request, 'upload_image.html', {'form': form })
     
     
 @login_required(login_url='/accounts/login/')
@@ -56,14 +56,37 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def search(request):
-    profile_list = User.objects.all()
+    Profile = User.objects.all()
 
     if 'name' in request.GET and request.GET['name']:
         searched_name = request.GET.get('name')
         results = User.objects.filter(username__icontains=searched_name)
         print(results)
 
-        return render(request,'results.html',locals())
+        return render(request,'results.html',{'Profile':Profile})
 
+def comments(request,image_id):
+    current_user=request.user
+    image = Image.objects.get(id=image_id)
+    user= User.objects.get(user=current_user)
+    comments = Comments.objects.all()
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comments = form.save(commit=False)
+            comments.image = image
+            comments.comments_user = current_user
+            comments.save()
+
+            print(comments)
+
+
+        return redirect(index)
+
+    else:
+        form = CommentForm()
+
+    return render(request, 'comment.html',{'current_user':current_user, 'image':image, 'user':user, 'comments': comments})
 
     
