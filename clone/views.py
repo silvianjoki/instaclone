@@ -10,10 +10,12 @@ from .models import Image, Profile, Comments
 
 
 
+def index(request):
+    return render(request, 'index.html')
 
 
 @login_required(login_url='/accounts/login/')
-def index(request):
+def home(request):
     title= "Instagram"
     current_user = request.user
     images = Image.objects.all()
@@ -21,7 +23,7 @@ def index(request):
     profile = Profile.objects.all()
     
     
-    return render(request, 'index.html', {'title':title, 'current_user':current_user, 'images':images, 'comments': comments, 'profile':profile})
+    return render(request, 'home.html', {'title':title, 'current_user':current_user, 'images':images, 'comments': comments, 'profile':profile})
 
 
 @login_required(login_url='/accounts/login/')
@@ -34,7 +36,7 @@ def upload_image(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('index', {'title':title})
+        return redirect('home', {'title':title})
     else:
         form = UploadImageForm()
     return render(request, 'upload_image.html', {'form': form })
@@ -52,7 +54,7 @@ def profile(request):
         else:
             form = ProfileForm()
             
-        return render (request, 'profile/new_profile.html')
+        return render (request, 'profile.html')
     
 
 @login_required(login_url='/accounts/login/')
@@ -79,7 +81,7 @@ def comments(request,image_id):
             comments.image = image
             comments.comments_user = current_user
             comments.save()
-        return redirect(index)
+        return redirect('home')
     else:
         form = CommentForm()
     return render(request, 'comment.html',{'current_user':current_user, 'image':image, 'user':user, 'comments': comments})
@@ -106,4 +108,4 @@ def like_image(request,image_id):
     else:
         image.likes.add(profile)
         liked = True
-    return HttpResponseRedirect(reverse('index', {'liked':liked}))
+    return HttpResponseRedirect(reverse('home', {'liked':liked}))

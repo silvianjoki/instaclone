@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'clone.apps.CloneConfig',
     'bootstrap5',
     'tinymce',
+    'crispy_forms',
     
     'django.contrib.admin',
     'django.contrib.auth',

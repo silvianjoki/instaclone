@@ -19,12 +19,12 @@ from django.urls import path, include, re_path
 from django.contrib.auth import views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('^tinymce/', include('tinymce.urls')),
     path('', include('clone.urls')),
-    path('accounts/', include('django_registration.backends.one_step.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+
     # path('logout/', AuthenticationError.views.logout_user, name='logout'),
 ]
 
