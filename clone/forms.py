@@ -6,19 +6,16 @@ class ProfileForm(forms.ModelForm):
     model = Profile
     class  Meta:
         model = Profile
-        exclude = ('followers', 'following',)
+        exclude = ['followers', 'following']
 
-class EditBioForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ('user',)
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
-        exclude = ('image', )
+        exclude = ['image']
 
 class UploadImageForm(forms.ModelForm):
     class Meta :
         model = Image
-        exclude = ('profile', 'post_date', 'likes',)
+        exclude = ['profile', 'post_date', 'likes']

@@ -10,17 +10,20 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to = 'images/', null=True)
     bio = models.TextField(blank=True)
-
+    name = models.CharField(max_length=44, null=True)
+    followers = models.IntegerField(default=0)
+    following = models.IntegerField(default=0)
     
-    def __str__(self):
-        return self.username
+    def delete_profile(self):
+        self.delete()
+
     def profile_save(self):
         self.save()
         
         
     @classmethod
-    def search_username(cls,username):
-        return User.objects.filter(username=username)
+    def search_name(cls,name):
+        return User.objects.filter(name=name)
 
 class Image(models.Model):
     name = models.CharField(max_length=30)
@@ -28,7 +31,7 @@ class Image(models.Model):
     caption = models.TextField(blank=True)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete= models.CASCADE)
-    likes = models.ManyToManyField(Profile, related_name="posts")
+    likes = models.ManyToManyField(Profile, blank=True, related_name="lkes", default=0)
     
     def __str__(self):
         return self.name
