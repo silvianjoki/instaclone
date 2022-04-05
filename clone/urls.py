@@ -11,7 +11,9 @@ urlpatterns=[
     re_path('^$', views.index, name = 'index'),
     path('profile/', views.profile, name='profile'),
     path('home/', views.home, name='home'),
+    path('^upload_image/', views.upload_image, name='upload_image'),
     path('results/', views.search, name='results'),
+    
     
     
     path('accounts/', include('django_registration.backends.one_step.urls')),
