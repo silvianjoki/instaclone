@@ -28,7 +28,7 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def upload_image(request):
-    title = "Instagram | Upload image"
+    # title = "Instagram | Upload image"
     current_user = request.user
     if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
@@ -36,7 +36,7 @@ def upload_image(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('home', {'title':title})
+        return redirect('home')
     else:
         form = UploadImageForm()
     return render(request, 'upload_image.html', {'form': form })
