@@ -3,23 +3,19 @@
 <img src="./media/images/Screenshot 2022-04-05 at 11.23.24.png" 
      alt="landing"
      style="width=100%;" />
-Pictures- a Django based personal gallery
+Instaclone- a Django based instagram replica
 
 ## Description
-Pictures is a Django based personal gallery. 
+Instaclone is a Django based personal instagram replica. 
 Noteable features of the app include:
 1. Admin portal:
 Here, the app owner is required to login in by providing necessary credentials. Upon succesful login, they can then go ahead and upload, update or delete an image. They can also create, delete and edit image loactions and categories.
 11. Image details:
-To view the image details, click on the respective image and a modal pops up. 
-3. Image filtering by category and location:
-- By category: To view images in the same category, one can search by category name in the search form located in the navbar or by clicking on the category tag located in the image displayed
-- By location: To view images from the same location, the user can click on the location name which is in the image displayed
-4. Image sharing: 
-Spotted an image you'd love to share? The application allows for image sharing. Click on the share icon to access a method of sharing the image
+To view the image details, click on the respective image and a image card pops up. 
+
 
 ## Live link
-Visit the application on .
+Visit the application on https://github.com/silvianjoki/instaclone.git
 
 
 ## Setup & Run instructions
@@ -44,6 +40,6 @@ Technologies used to develop this application:
 
 Should you be unable to access the website, have any recommendations and/or questions, feel free to email me:[silvia.kamau@student.moringaschool.com]
 
-## [License](https://github.com/silvianjoki/pictures/LICENSE.md)
+## [License](https://github.com/silvianjoki/instaclone/LICENSE.md)
 
 Copyright (c) 2020 [Silvia Njoki](https://github.com/silvianjoki)
