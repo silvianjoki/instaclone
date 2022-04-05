@@ -28,7 +28,6 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def upload_image(request):
-    # title = "Instagram | Upload image"
     current_user = request.user
     if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
@@ -45,16 +44,16 @@ def upload_image(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    if request.method == ' POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.name = current_user
-            profile.save()
-        else:
-            form = ProfileForm()
+    # if request.method == ' POST':
+    #     form = ProfileForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         profile = form.save(commit=False)
+    #         profile.name = current_user
+    #         profile.save()
+    #     else:
+    #         form = ProfileForm()
             
-        return render (request, 'profile.html')
+    return render (request, 'profile.html', {'current_user':current_user})
     
 
 @login_required(login_url='/accounts/login/')

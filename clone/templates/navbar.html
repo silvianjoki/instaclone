@@ -1,14 +1,17 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <a class="navbar-brand my-3" href="/" style="font-family: 'The Dongle', cursive; font-size:xx-large;">Instaclone</a>
+            <a class="navbar-brand my-3" href="/" style="font-family: 'The Dongle', cursive; font-size:large;">Instaclone</a>
         
             <li>
-                <a href="{%url 'upload_image'%}">Upload Image </a>
+                <a href="{%url 'upload_image' %}">Upload Image </a>
             </li>
 
             <li>
-                {% comment %} <a href="/logout">Logout</a> {% endcomment %}
+                <a href="{%url 'profile' %}">View Profile </a>
+            </li>
+            <li>
+                <!-- {% comment %} <a href="/logout">Logout</a> {% endcomment %} -->
             </li>
         </a>
     </div>
