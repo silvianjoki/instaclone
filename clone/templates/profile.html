@@ -5,17 +5,13 @@
 {% load bootstrap_icons %}
 
 
-<div class="container">
-    
-    <div class="row ">
-        <div class="col-md-3 col-sm-6">
 
-        </div>
-    </div>
+<div class="container">
+    {% for prof in proofile %}
     <div class="row justify-content-center mt-5">
         <div class="card shadow-sm col-md-8 col-sm-12 border-bottom px-5 pt-3">
             <div class="text-center">
-                <img src="{{ profile.profile_picture.url }}" class="rounded-circle" width="100" height="100" />
+                <img src="{{ prof.profile_picture.url }}" class="rounded-circle" width="100" height="100" />
                         {% if request.user == user %}
                         {% endif %}
                     </span>
@@ -25,13 +21,9 @@
                     {% endif %}
                 </h3>
             </div>
-            {% if profile.bio %}
-            <p>{{ profile.bio }}</p>
+            {% if prof.bio %}
+            <p>{{ prof.bio }}</p>
             {% endif %}
-
-            <div class="mb-3">
-                
-            </div>
         </div>
     </div>
 
@@ -53,34 +45,20 @@
             {% endif %}
         </div>
     </div>
-
-    {% for post in posts %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8 col-sm-12 border-bottom">
-            <div>
-                <a href="{% url 'profile' post.name.profile.pk %}">
-                    <img class="round-circle post-img" height="30" width="30" src="{{ post.name.profile_picture.url }}" />
-                </a>
-                <p class="post-text">
-                    <a class="text-primary post-link" href="{% url 'profile' post.name.profile.pk %}">@{{ post.name }}</a> {{ post.created_on }}
-                </p>
+    <div class="container">
+        {% for img in images %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 21rem;">
+                <img src="{{img.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{img.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"> {{img.caption}} </h6>
+                    <p class="card-text"> {{img.post_date}} </p>
+                    {% bs_icon 'heart-fill' color='black' %} {{img.likes}} 
+                </div>
             </div>
-            <div class="position-relative">
-                <p>{{ post.caption }}</p>
-            </div>
-
-            <div class="d-flex flex-row">
-                <form method="POST" action="{% url 'likes' post.pk %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button class="remove-default-btn" type="submit">
-                        <i class="fa-solid fa-thumbs-up"><span>{{ post.likes.all.count }}</span></i>
-                    </button>
-                </form>
-        </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 
 
